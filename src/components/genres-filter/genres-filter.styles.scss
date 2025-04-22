@@ -1,0 +1,54 @@
+.genres-filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #0f69b74b;
+  border-radius: 10px;
+
+  .genre-item {
+    position: relative;
+
+    input[type="checkbox"] {
+      display: none; /* Hide the default checkbox */
+    }
+
+    label {
+      display: inline-block;
+      background-color: #107dbc;
+      border-radius: 8px;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      font-weight: bold;
+      text-transform: capitalize;
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        background-color: #e3f2fd;
+        color: #1976d2;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    input[type="checkbox"]:checked + label {
+      background-color: #1976d2;
+      color: #ffffff;
+      border-color: #1565c0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  @media (max-width: 480px) {
+    .genre-item label {
+      font-size: 0.8rem;
+      padding: 6px 10px;
+    }
+  }
+}
+
+
+
+

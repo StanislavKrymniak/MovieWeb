@@ -1,0 +1,36 @@
+.navigation_container {
+    background: linear-gradient(105deg, #1979a2, #bc03f9);
+
+}
+
+.navigation-logo {
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 20px 0 0 0;
+    font-size: 35px;
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+    font-weight: bold;
+}
+
+.navigation_menu {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navigation_sign-in {
+    a {
+        margin: 0 20px 0 0;
+        text-decoration: none;
+        color: #fff;
+    }
+}
+
+.navigation_sign-out {
+    cursor: pointer;
+    margin: 0 20px 0 0;
+    text-decoration: none;
+    color: #fff;
+}

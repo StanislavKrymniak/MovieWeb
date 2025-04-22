@@ -1,0 +1,99 @@
+.pagination_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 50px 0 20px 0;
+  flex-wrap: wrap; /* Allow wrapping on smaller screens */
+
+  button {
+    background: linear-gradient(135deg, #2275bd, #12aff8); /* Gradient button */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover:not(:disabled) {
+      background: linear-gradient(135deg, #4a19dc, #1f23e6); /* Hover gradient */
+      transform: translateY(-2px) scale(1.05);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    &:disabled {
+      background: #e0e0e0; /* Subtle gray for disabled */
+      color: #bbb;
+      cursor: not-allowed;
+      box-shadow: none;
+    }
+  }
+
+  .pagination_button {
+    &.active {
+      background: linear-gradient(135deg, hsla(220, 93%, 33%, 0.76), #7422e7); /* Active page button gradient */
+      color: #fff;
+      font-weight: bold;
+      border: 2px solid #1c85e2; /* Add border for distinction */
+      box-shadow: 0 3px 5px rgba(159, 43, 254, 0.2);
+      pointer-events: none;
+      transform: scale(1.1);
+    }
+  }
+
+  .ellipsis {
+    font-size: 1.2rem;
+    color: #888;
+    user-select: none;
+    font-weight: 500;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pagination_container {
+    gap: 8px;
+
+    button {
+      padding: 8px 14px;
+      font-size: 0.95rem;
+    }
+
+    .ellipsis {
+      font-size: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination_container {
+    gap: 5px;
+
+    button {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+    }
+
+    .ellipsis {
+      font-size: 0.9rem;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination_container {
+    flex-wrap: wrap; /* Allow buttons to wrap to the next line */
+    gap: 5px;
+
+    button {
+      padding: 6px 8px;
+      font-size: 0.8rem;
+    }
+
+    .ellipsis {
+      font-size: 0.85rem;
+    }
+  }
+}

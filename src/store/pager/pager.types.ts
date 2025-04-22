@@ -1,0 +1,3 @@
+export enum PAGER_ACTION_TYPES {
+    SET_CURRENT_PAGE = 'pager/SET_CURRENT_PAGE'
+}

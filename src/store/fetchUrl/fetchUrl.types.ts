@@ -1,0 +1,4 @@
+export enum FETCH_ACTION_TYPES {
+    FETCH_SET_URL_MOVIE = 'fetchUrl/SET_URL_MOVIE',
+    FETCH_SET_URL_TV = 'fetchUrl/SET_URL_TV'
+}

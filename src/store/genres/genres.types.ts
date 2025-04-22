@@ -1,0 +1,13 @@
+export enum GENRES_ACTION_TYPES {
+    FETCH_MOVIE_GENRES_START = 'genres/FETCH_GENRES_START',
+    FETCH_TV_GENRES_START = 'genres/FETCH_TV_GENRES_START',
+    FETCH_GENRES_SUCCESS = 'genres/FETCH_GENRES_SUCCESS',
+    FETCH_GENRES_FAILED = 'genres/FETCH_GENRES_FAILED',
+    SET_SELECTED_GENRES = 'genres/SET_SELECTED_GENRES'
+}
+
+
+export type Genres = {
+    id: number,
+    name: string
+}
