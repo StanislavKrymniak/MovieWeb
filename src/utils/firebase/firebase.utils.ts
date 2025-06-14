@@ -1,7 +1,8 @@
 import {initializeApp} from 'firebase/app';
 import { getAuth,signInWithRedirect,signInWithPopup, GoogleAuthProvider, User,createUserWithEmailAndPassword,signInWithEmailAndPassword, signOut, NextOrObserver, onAuthStateChanged } from 'firebase/auth';
-import {getFirestore, doc, getDoc, setDoc, QueryDocumentSnapshot} from 'firebase/firestore';
-
+import {getFirestore, doc, getDoc, setDoc, QueryDocumentSnapshot, deleteDoc, collection, getDocs} from 'firebase/firestore';
+import { MediaTypes } from '../../store/movies/movies.types';
+import { MediaToRemove } from '../../store/watchlist/watchlist.types';
 const firebaseConfig = {
     apiKey: "AIzaSyC4nqX1Gg7KxFmVn7mlz2hyMlRdOjspvwU",
     authDomain: "movie-web-322f8.firebaseapp.com",
@@ -14,7 +15,7 @@ const firebaseConfig = {
   
   // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
-//const analytics = getAnalytics(app);
+
 
 const GoogleProvider = new GoogleAuthProvider();   
 GoogleProvider.setCustomParameters({
@@ -97,3 +98,43 @@ export const getCurrentUser = (): Promise<User | null> => {
         )
     })
 }
+
+export const createWatchlistDocument = async (
+    user: User, media: MediaTypes
+    ): Promise<void> => {
+    if (!user) return;
+    const docId = `${media.media_type}_${media.id}`;
+    const watchlistDocRef = doc(db, 'users', user.uid, 'watchlist', docId);
+    try {
+    await setDoc(watchlistDocRef, media);
+  } catch (error) {
+    console.error("Error adding media to watchlist:", error);
+    throw error;
+  }
+}
+
+export const deleteWatchlistDocument = async (
+  user: User,
+  mediaToRemove: MediaToRemove
+): Promise<void> => {
+  if (!user) return;
+
+  const docId = `${mediaToRemove.media_type}_${mediaToRemove.id}`;
+  const docRef = doc(db, 'users', user.uid, 'watchlist', docId);
+
+  try {
+    await deleteDoc(docRef);
+    console.log("Successfully deleted from watchlist");
+  } catch (error) {
+    console.error("Error deleting media from watchlist:", error);
+    throw error;
+  }
+};
+
+export const getWatchlistDocument = async (uid: string): Promise<MediaTypes[]> => {
+  const collectionRef = collection(db, 'users', uid, 'watchlist');
+  const snapshot = await getDocs(collectionRef);
+  if (snapshot.empty) return [];
+
+  return snapshot.docs.map((doc) => doc.data() as MediaTypes);
+};

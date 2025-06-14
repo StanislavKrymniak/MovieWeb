@@ -1,6 +1,5 @@
 import { AnyAction } from "redux-saga";
-import { MEDIA_ACTION_TYPES, MediaTypes, TvShowTypes } from "./movies.types";
-import { MovieTypes } from "./movies.types";
+import { MEDIA_ACTION_TYPES, MediaTypes } from "./movies.types";
 
 export type MoviesState = {
     readonly moviesList : MediaTypes[]

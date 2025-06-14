@@ -3,7 +3,8 @@ import { mediaSaga } from './movies/movies.saga';
 import { genresSaga } from './genres/genres.saga';
 import {peopleSaga} from './people/people.saga'
 import { userSagas } from './user/user.saga';
+import { watchlistSaga } from './watchlist/watchlist.saga';
 
 export function* rootSaga() {
-    yield* all([call(mediaSaga), call(genresSaga), call(peopleSaga), call(userSagas)]);
+    yield* all([call(mediaSaga), call(genresSaga), call(peopleSaga), call(userSagas), call(watchlistSaga)]);
 }

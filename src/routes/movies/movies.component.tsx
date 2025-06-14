@@ -13,6 +13,8 @@ import { MovieRouteParams } from '../movies-item/movies-item.component'
 import { useParams } from 'react-router-dom'
 import { setUrlMovie } from '../../store/fetchUrl/fetchUrl.action'
 import { discover_Url } from '../../helper/keys'
+import { onAuthStateChangedListener,getCurrentUser } from '../../utils/firebase/firebase.utils'
+import { fetchWatchlistStart } from '../../store/watchlist/watchlist.action'
 
 export const Movies = () => {
   const {category} = useParams<MovieRouteParams>();
@@ -20,8 +22,15 @@ export const Movies = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    //dispatch(setUrlMovie(discover_Url))
-    dispatch(fetchMoviesStart())
+    const loadUserAndData = async () => {
+    const user = await getCurrentUser();
+    if (user) {
+      dispatch(fetchWatchlistStart()); 
+    }
+    dispatch(fetchMoviesStart());
+  };
+
+  loadUserAndData();
   },[dispatch])
     return (
         <div className='movies_container'>

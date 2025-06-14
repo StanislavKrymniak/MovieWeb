@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, FC } from 'react';
 import { fetchMovieGenresStart,fetchTVGenresStart, setSelectedGenres } from '../../store/genres/genres.action';
-import { selectGenres, selectSelectedGenres } from '../../store/genres/genres.selector';
+import { selectMovieGenres,selectTVGenres, selectSelectedGenres,hasFetchedMovieGenres, hasFetchedTVGenres } from '../../store/genres/genres.selector';
 import { Genres } from '../../store/genres/genres.types';
 import './genres-filter.styles.scss';
 import { fetchMoviesStart,fetchTVShowsStart } from '../../store/movies/movies.action';
@@ -13,15 +13,18 @@ type GenresFilterProps = {
 
 const GenresFilter: FC<GenresFilterProps> = ({type}) => {
   const dispatch = useDispatch();
+  const isFetchedMovieGenres = useSelector(hasFetchedMovieGenres)
+  const isFetchedTVGenres = useSelector(hasFetchedTVGenres)
   useEffect(() => {
-    if (type === 'movie') {
-      dispatch(fetchMovieGenresStart());
-    } else if (type === 'tv') {
-      dispatch(fetchTVGenresStart());
+    if (type === 'movie' && !isFetchedMovieGenres) {
+      
+        dispatch(fetchMovieGenresStart());
+    } else if (type === 'tv' && !isFetchedTVGenres) {
+        dispatch(fetchTVGenresStart());
     }
-  }, [dispatch]);
+  }, [dispatch,type]);
   
-  const genres = useSelector(selectGenres) as Genres[];
+  const genres = useSelector(type === 'movie' ? selectMovieGenres : selectTVGenres);
   const selectedGenres = useSelector(selectSelectedGenres) as number[];
 
 

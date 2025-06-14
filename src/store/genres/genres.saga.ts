@@ -21,7 +21,7 @@ export function* fetchGenresAsync (type: "movie" | "tv") {
         try {
             const genres = yield* call(fetchGenres)
 
-            yield* put(fetchGenresSuccess(genres))
+            yield* put(fetchGenresSuccess(genres,"movie"))
         } catch (error) {
             yield* put(fetchGenresFailed(error as Error))
         }
@@ -29,7 +29,7 @@ export function* fetchGenresAsync (type: "movie" | "tv") {
         try {
             const genres = yield* call(fetchTVGenres)
 
-            yield* put(fetchGenresSuccess(genres))
+            yield* put(fetchGenresSuccess(genres,"tv"))
         } catch (error) {
             yield* put(fetchGenresFailed(error as Error))
         }

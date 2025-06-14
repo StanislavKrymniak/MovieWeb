@@ -10,6 +10,7 @@ import { selectCurrentUser } from '../../store/user/user.selector';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { signOutStart } from '../../store/user/user.action';
+import { clearWatchlist, fetchWatchlistStart } from '../../store/watchlist/watchlist.action';
 
 
 export const Navigation = () => {
@@ -20,8 +21,15 @@ export const Navigation = () => {
         dispatch(setCurrentPage(1));
         dispatch(fetchMoviesStart());
     }
+    const onSingInClickHandler = () => {
+        dispatch(fetchWatchlistStart())
+    }
+    
     const currentUser = useSelector(selectCurrentUser) 
-    const signOutHandler = () => dispatch(signOutStart())
+    const signOutHandler = () => {
+        dispatch(signOutStart())
+        dispatch(clearWatchlist())
+    }
     return (
         <div className="navigation_body">
             <div className='navigation_container'>
@@ -35,7 +43,7 @@ export const Navigation = () => {
                 
                 ) : (
                     
-                    <div className="navigation_sign-in"><Link to='/sign-in'>Sign-In</Link></div>
+                    <div className="navigation_sign-in" onClick={()=> onSingInClickHandler()}><Link to='/sign-in'>Sign-In</Link></div>
                 )
                 }
                 </div>

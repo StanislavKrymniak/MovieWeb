@@ -7,7 +7,7 @@ export type PeopleState = {
     readonly error: Error | null;
 }
 
-const PEOPLE_INITIAL_STATE = {
+const PEOPLE_INITIAL_STATE: PeopleState = {
   PeopleList: [],
   isLoading: false,
   error: null,

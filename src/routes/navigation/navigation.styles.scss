@@ -1,14 +1,14 @@
 .navigation_container {
+    position: relative;
     background: linear-gradient(105deg, #1979a2, #bc03f9);
-
 }
 
 .navigation-logo {
     text-decoration: none;
     display: block;
     text-align: center;
-    padding: 20px 0 0 0;
-    font-size: 35px;
+    padding: 50px 0 0 0;
+    font-size: 38px;
     font-family: 'Roboto', sans-serif;
     color: #fff;
     font-weight: bold;
@@ -18,9 +18,15 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: 400px) {
+        justify-content: center;
+    }
 }
 
 .navigation_sign-in {
+    position: absolute;
+    top: 15px;
+    right: 10px;
     a {
         margin: 0 20px 0 0;
         text-decoration: none;

@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { MovieRouteParams } from '../movies-item/movies-item.component';
 import { MediaTypes } from '../../store/movies/movies.types';
 import { api_Key } from '../../helper/keys';
+import WatchlistButton from '../../components/watchlist-button/watchilst-button.component';
 
 export const TVShowItem = () => {
    const { TvId } = useParams<MovieRouteParams>();
@@ -37,11 +38,14 @@ export const TVShowItem = () => {
     <div className="movie-item-container">
       {tvDetails && (
         <>
-          <img 
-            className="movie-item-poster" 
-            src={`https://image.tmdb.org/t/p/w500${tvDetails.poster_path ?? ''}`} 
-            alt={tvDetails.name ?? 'No title'} 
-          />
+          <div className="movie-item-body">
+          <WatchlistButton media={tvDetails}/>
+              <img 
+                className="movie-item-poster" 
+                src={`https://image.tmdb.org/t/p/w500${tvDetails.poster_path ?? ''}`} 
+                alt={tvDetails.name ?? 'No title'} 
+              />
+          </div>
           <div className="movie-item-details">
             <h1>{tvDetails.name ?? 'No title available'}</h1>
             <p>{tvDetails.overview ?? 'No description available'}</p>

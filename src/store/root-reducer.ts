@@ -6,6 +6,7 @@ import {pagerReducer} from './pager/pager.reducer';
 import { fetchUrlReducer } from './fetchUrl/fetchUrl.reducer';
 import { peopleReducer } from './people/people.reducer';
 import { userReducer } from './user/user.reducer';
+import { watchlistReducer } from './watchlist/watchlist.reducer';
 
 export const rootReducer = combineReducers({
     checkoutMovie: checkoutReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
     pager: pagerReducer,
     fetchUrl: fetchUrlReducer,
     people: peopleReducer,
-    user: userReducer
+    user: userReducer,
+    watchlist: watchlistReducer,
 });

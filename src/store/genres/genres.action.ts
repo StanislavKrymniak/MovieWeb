@@ -6,7 +6,7 @@ export type FetchMovieGenresStart =  Action<GENRES_ACTION_TYPES.FETCH_MOVIE_GENR
 
 export type FetchTVGenresStart =  Action<GENRES_ACTION_TYPES.FETCH_TV_GENRES_START>
 
-export type FetchGenresSuccess = ActionWithPayload<GENRES_ACTION_TYPES.FETCH_GENRES_SUCCESS, Genres[]>
+export type FetchGenresSuccess = ActionWithPayload<GENRES_ACTION_TYPES.FETCH_GENRES_SUCCESS, {genres :Genres[], payloadType: string}>
 
 export type FetchGenresFailed = ActionWithPayload<GENRES_ACTION_TYPES.FETCH_GENRES_FAILED, Error>
 
@@ -21,8 +21,8 @@ export const fetchMovieGenresStart = (): FetchMovieGenresStart =>
 export const fetchTVGenresStart = (): FetchTVGenresStart =>
     createAction(GENRES_ACTION_TYPES.FETCH_TV_GENRES_START)
 
-export const fetchGenresSuccess = (genres: Genres[]): FetchGenresSuccess => 
-    createAction(GENRES_ACTION_TYPES.FETCH_GENRES_SUCCESS, genres)
+export const fetchGenresSuccess = (genres: Genres[],payloadType: string): FetchGenresSuccess => 
+    createAction(GENRES_ACTION_TYPES.FETCH_GENRES_SUCCESS, {genres, payloadType})
 
 export const fetchGenresFailed = (error: Error): FetchGenresFailed => 
     createAction(GENRES_ACTION_TYPES.FETCH_GENRES_FAILED, error)

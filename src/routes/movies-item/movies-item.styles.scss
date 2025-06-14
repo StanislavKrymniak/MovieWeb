@@ -6,18 +6,22 @@
   background-color: #1e272e; 
   color: #ffffff; 
 
-  .movie-item-poster {
-    width: 80%;
-    max-width: 400px;
+  .movie-item-body {
+    position: relative;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    transition: transform 0.3s ease;
-
     &:hover {
       transform: scale(1.05);
     }
   }
+    .movie-item-poster{
+      
+      max-width: 400px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease;
 
+      
+    }
   .movie-item-details {
     text-align: center;
     max-width: 800px;

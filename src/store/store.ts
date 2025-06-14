@@ -28,7 +28,7 @@ const persistConfig = {
   key: 'root',
   storage,
   blacklist: ['checkoutMovie', 'genres' ],
-  whitelist: ['pager','people','fetchUrl']
+  whitelist: ['pager','people','fetchUrl','user']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
