@@ -6,6 +6,7 @@ import {ButtonTypeClasses} from "../button/button.component";
 import { useDispatch } from "react-redux";
 import { emailSignInStart } from "../../store/user/user.action";
 import { googleSignInStart } from "../../store/user/user.action";
+import { fetchWatchlistStart } from "../../store/watchlist/watchlist.action";
 const defaultFormFields = {
     email: '',
     password: ''
@@ -26,6 +27,7 @@ export const SignIn = () => {
 
     const signInWithGoogle = async () => {
         dispatch(googleSignInStart())
+        dispatch(fetchWatchlistStart())
     };
 
     const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -34,6 +36,7 @@ export const SignIn = () => {
         try {
             dispatch(emailSignInStart(email, password))
             resetFormFields();
+            dispatch(fetchWatchlistStart())
         }
         catch(error) {
             console.log('user sign in failed', error)

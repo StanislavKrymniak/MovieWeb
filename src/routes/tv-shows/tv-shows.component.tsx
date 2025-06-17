@@ -9,7 +9,8 @@ import GenresFilter from '../../components/genres-filter/genres-filter.component
 import Pagination from '../../components/pagination/pagination.component';
 import TvShowsList from '../../components/tvshows-list/tv-shows-list.component';
 import { MovieRouteParams } from '../movies-item/movies-item.component';
-
+import { fetchWatchlistStart } from '../../store/watchlist/watchlist.action';
+import { getCurrentUser } from '../../utils/firebase/firebase.utils';
 
 export const TVShows = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,14 @@ export const TVShows = () => {
   const isLoading = useSelector(selectMoviesIsloading);
 
   useEffect(() => {
+    const loadUserAndData = async () => {
+    const user = await getCurrentUser();
+    if (user) {
+      dispatch(fetchWatchlistStart()); 
+    }
     dispatch(fetchTVShowsStart());
+    }
+    loadUserAndData();
   }, [dispatch]);
 
   if (isLoading) return <div>Loading TV Shows...</div>;
